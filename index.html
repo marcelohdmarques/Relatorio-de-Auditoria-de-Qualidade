@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório de Auditoria — SGQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ===== CABEÇALHO ===== -->
+    <header class="topbar no-print">
+      <div class="brand">
+        <span class="brand-mark">A</span>
+        <div>
+          <h1>Relatório de Auditoria</h1>
+          <p>Sistema de Gestão da Qualidade</p>
+        </div>
+      </div>
+      <button id="btnGerarPdf" class="btn-primary">Gerar relatório em PDF</button>
+    </header>
+
+    <!-- ===== DADOS DA AUDITORIA (empresa, auditor, data) ===== -->
+    <section class="meta-card no-print">
+      <div class="field">
+        <label for="empresa">Empresa auditada</label>
+        <input type="text" id="empresa" placeholder="Ex.: Construtora Horizonte Ltda.">
+      </div>
+      <div class="field">
+        <label for="auditor">Auditor responsável</label>
+        <input type="text" id="auditor" placeholder="Nome do auditor líder">
+      </div>
+      <div class="field">
+        <label for="dataAuditoria">Data da auditoria</label>
+        <input type="date" id="dataAuditoria">
+      </div>
+      <div class="field">
+        <label for="escopo">Escopo</label>
+        <input type="text" id="escopo" placeholder="Ex.: Obra Residencial Bloco B">
+      </div>
+    </section>
+
+    <!-- ===== PAINEL DE CONFORMIDADE ===== -->
+    <section class="dashboard no-print">
+      <div class="gauge-wrap">
+        <svg id="gaugeSvg" viewBox="0 0 200 200" class="gauge">
+          <circle cx="100" cy="100" r="84" class="gauge-track"></circle>
+          <circle cx="100" cy="100" r="84" class="gauge-value" id="gaugeCircle"></circle>
+          <text x="100" y="94" text-anchor="middle" class="gauge-percent" id="gaugePercentText">0%</text>
+          <text x="100" y="118" text-anchor="middle" class="gauge-label">conformidade</text>
+        </svg>
+      </div>
+      <div class="counters">
+        <div class="counter">
+          <span class="count" id="countTotal">0</span>
+          <span class="count-label">requisitos</span>
+        </div>
+        <div class="counter conforme">
+          <span class="count" id="countConforme">0</span>
+          <span class="count-label">conforme</span>
+        </div>
+        <div class="counter nao-conforme">
+          <span class="count" id="countNaoConforme">0</span>
+          <span class="count-label">não conforme</span>
+        </div>
+        <div class="counter nao-aplicavel">
+          <span class="count" id="countNaoAplicavel">0</span>
+          <span class="count-label">não aplicável</span>
+        </div>
+        <div class="counter pendente">
+          <span class="count" id="countPendente">0</span>
+          <span class="count-label">pendente</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LISTA DE REQUISITOS (preenchida via JS) ===== -->
+    <main id="listaRequisitos" class="lista-requisitos"></main>
+
+    <!-- ===== FOLHA DE ROSTO / SÓ APARECE NA IMPRESSÃO ===== -->
+    <section id="printCover" class="print-cover only-print"></section>
+
+    <footer class="rodape no-print">
+      <p>Trabalho acadêmico — disciplina de Front-end · HTML, CSS e JavaScript</p>
+    </footer>
+
+  </div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
